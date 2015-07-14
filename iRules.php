@@ -37,10 +37,11 @@ interface iRules
      * @param string $in_data holds column names
      * @param string $table holds name of the table
      * @param string $condition holds the condition, that how a data is to be selected. By default it is equal to 1, incase user does not have any condition.
-     * @param int $offset Description
+     * @param int $offset Fetch row index from, by default it is FALSE
+     * @param int $perpage Fetch this number of rows defined in $perpage
      * @return associative_array returns result as associative array TRUE if executed FALSE otherwise
      */
-    public function select($in_data, $table, $condition = 1, $perpage, $offset = FALSE);
+    public function select($in_data, $table, $condition = 1, $perpage = FALSE, $offset = FALSE);
     
     /**
 
@@ -50,4 +51,27 @@ interface iRules
      * @param string $condition holds the condition, that how a data is to be selected. By default it is equal to 1, incase user does not have any condition.
      */
     public function select_row($in_data, $table, $condition = 1);
+    
+    /**
+
+     * This is used to fetch multiple rows at a time with joins and alias
+     * @param string $in_data holds column names
+     * @param string $table holds name of the table
+     * @param string $condition holds the condition, that how a data is to be selected. By default it is equal to 1, incase user does not have any condition.
+     * @param array $alias aliases for the joined columns
+     * @param int $offset Fetch row index from, by default it is FALSE
+     * @param int $perpage Fetch this number of rows defined in $perpage
+     * @return associative_array returns result as associative array TRUE if executed FALSE otherwise
+     */
+    public function selectj($in_data, $table, $condition = 1, $alias, $perpage = FALSE, $offset = FALSE);
+    
+    /**
+
+     * This is used to fetch a rows at a time with joins and alias
+     * @param string $in_data Array type variable holds keys-value pairs of column and data respectively.
+     * @param string $table holds name of the table
+     * @param string $condition holds the condition, that how a data is to be selected. By default it is equal to 1, incase user does not have any condition.
+     * @param array $alias aliases for the joined columns
+     */
+    public function select_rowj($in_data, $table, $condition = 1, $alias);
 }
